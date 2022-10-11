@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:silent_moon/pages/choose_topic_page.dart';
 import 'package:silent_moon/utils/theme.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -7,7 +8,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final orientation = MediaQuery.of(context).orientation;
+    final orientation = context.orientation;
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -80,7 +81,9 @@ class ButtonGetStarted extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.of(context).pushNamed('$ChooseTopicPage');
+      },
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(
           kColorLight,
@@ -105,7 +108,7 @@ class GetStartedBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final orientation = MediaQuery.of(context).orientation;
+    final orientation = context.orientation;
     return Align(
       alignment: Alignment.bottomCenter,
       child: FractionallySizedBox(

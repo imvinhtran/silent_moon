@@ -24,4 +24,20 @@ class PrimaryFont {
       fontWeight: FontWeight.w500,
     );
   }
+
+  static TextStyle bold(double size) {
+    return TextStyle(
+      fontFamily: 'HelveticaNeue',
+      fontSize: size,
+      fontWeight: FontWeight.w600,
+    );
+  }
+}
+
+extension GetOrientation on BuildContext {
+  Orientation get orientation => MediaQuery.of(this).orientation;
+}
+
+extension GetSize on BuildContext {
+  Size get screenSize => MediaQuery.of(this).size;
 }
