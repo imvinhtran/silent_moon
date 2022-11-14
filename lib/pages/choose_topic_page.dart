@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:silent_moon/data/model/topic.model.dart';
 import 'package:silent_moon/data/topic_storage.dart';
+import 'package:silent_moon/pages/reminder_page.dart';
 import 'package:silent_moon/utils/theme.dart';
 import 'package:silent_moon/widgets/responsive_builder.dart';
 
@@ -15,7 +14,6 @@ class ChooseTopicPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = context.screenSize;
     return Scaffold(
       body: SafeArea(
           child: ResponsiveBuilder(
@@ -98,36 +96,41 @@ class _TopicGrid extends StatelessWidget {
         itemCount: topics.length,
         itemBuilder: (context, index) {
           final topic = topics[index];
-          return DecoratedBox(
-              decoration: BoxDecoration(
-                  color: topic.bgColor,
-                  borderRadius: BorderRadius.circular(12)),
-              child: Column(
-                children: [
-                  LayoutBuilder(
-                    builder: (context, constraints) {
-                      return SvgPicture.asset(
-                        topic.thumbnail,
-                        width: constraints.maxWidth,
-                      );
-                    },
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Text(
-                      topic.title,
-                      style: PrimaryFont.bold(
-                              context.screenSize.shortestSide * 0.04)
-                          .copyWith(
-                        color: topic.textColor,
+          return InkWell(
+            onTap: () {
+              Navigator.of(context).pushNamed('$ReminderPage');
+            },
+            child: DecoratedBox(
+                decoration: BoxDecoration(
+                    color: topic.bgColor,
+                    borderRadius: BorderRadius.circular(12)),
+                child: Column(
+                  children: [
+                    LayoutBuilder(
+                      builder: (context, constraints) {
+                        return SvgPicture.asset(
+                          topic.thumbnail,
+                          width: constraints.maxWidth,
+                        );
+                      },
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Text(
+                        topic.title,
+                        style: PrimaryFont.bold(
+                                context.screenSize.shortestSide * 0.04)
+                            .copyWith(
+                          color: topic.textColor,
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 16,
-                  )
-                ],
-              ));
+                    SizedBox(
+                      height: 16,
+                    )
+                  ],
+                )),
+          );
         });
   }
 }

@@ -6,8 +6,18 @@ const kColorLightYellow = Color(0xFFFFECCC);
 const kColorBlack = Color(0xFF3F414E);
 const kColorLight = Color(0xFFEBEAEC);
 
+const kColorYellow = Color(0xFFFFC97E);
+
 class PrimaryFont {
   static String fontFamily = 'HelveticaNeue';
+
+  static TextStyle light(double size) {
+    return TextStyle(
+      fontFamily: 'HelveticaNeue',
+      fontSize: size,
+      fontWeight: FontWeight.w200,
+    );
+  }
 
   static TextStyle thin(double size) {
     return TextStyle(
@@ -29,7 +39,7 @@ class PrimaryFont {
     return TextStyle(
       fontFamily: 'HelveticaNeue',
       fontSize: size,
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w700,
     );
   }
 }
